@@ -11,9 +11,9 @@ public class Main {
 	public static void main(String[] args) throws SQLException {
 		
 		EmployeeDao edao = new EmployeeDaoImpl();
-		Employee e1 = new Employee(4,"Piyush Saini",300000);
+//		Employee e1 = new Employee(4,"Piyush Saini",300000);
 		
-		edao.UpdateData(e1);
+		edao.DeleteData(4);
 	}
 
 }
