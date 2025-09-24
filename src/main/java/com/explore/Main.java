@@ -1,6 +1,7 @@
 package com.explore;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.explore.dao.EmployeeDao;
 import com.explore.dao.EmployeeDaoImpl;
@@ -12,8 +13,15 @@ public class Main {
 		
 		EmployeeDao edao = new EmployeeDaoImpl();
 //		Employee e1 = new Employee(4,"Piyush Saini",300000);
+//		
+//		edao.InsertData(e1);
 		
-		edao.DeleteData(4);
+//		edao.printAllEmployee();
+		
+		List<Employee> ls = edao.getAllData();
+		for(Employee e : ls) {
+			System.out.println(e);
+		}
 	}
 
 }
