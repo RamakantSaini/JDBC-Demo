@@ -15,5 +15,7 @@ public interface EmployeeDao {
 	public List<Employee> getAllData();
 	
 	public void printAllEmployee();
+	
+	public void getEmpByName(String name);
 
 }
