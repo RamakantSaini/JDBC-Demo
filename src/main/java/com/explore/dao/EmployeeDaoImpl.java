@@ -15,7 +15,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private static String username = "root";
 	private static String password = "admin@123";
 	
-	private static String INSERT_QUERY ="INSERT INTO ducatstudents VALUES (%d , '%s' , %f)";
+	private static final String INSERT_QUERY ="INSERT INTO ducatstudents VALUES (%d , '%s' , %f)";
+	private static final String UPDATE_QUERY ="UPDATE  ducatstudents SET salary = '%f' WHERE ID = %d";
 	
 	
 	static {
@@ -35,14 +36,21 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Statement st = conn.createStatement();
 		
 		st.executeUpdate(String.format(INSERT_QUERY, e.getId(),e.getName(),e.getSalary()));
-		
+		st.close();
 		System.out.println("Data Inserted Successfully..");
 	}
 
 	@Override
 	public void UpdateData(Employee e) {
 		
-		
+		//Used try with resource for auto-closeable resources
+		try(Statement st = conn.createStatement()){
+			st.executeUpdate(String.format(UPDATE_QUERY,e.getSalary(),e.getId()));
+			System.out.println("Data Updated Successfully");
+		}
+		catch(SQLException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	@Override
