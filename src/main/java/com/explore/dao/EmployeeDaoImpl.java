@@ -22,6 +22,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private static final String UPDATE_QUERY ="UPDATE  ducatstudents SET salary = '%f' WHERE ID = %d";
 	private static final String DELETE_QUERY ="DELETE  FROM ducatstudents WHERE ID = %d";
 	private static final String SELECT_QUERY ="SELECT  * FROM ducatstudents ";
+	private static final String SELECT_EMP_NAME ="SELECT  * FROM ducatstudents WHERE name = '%s' ";
+	//private static final String SELECT_EMP_NAME ="SELECT  * FROM ducatstudents WHERE name = 'abc' or '1=1' "; SQL Injection
 	
 	
 	static {
@@ -105,6 +107,21 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		catch(SQLException exception) {
 			exception.printStackTrace();
 		}
+	}
+
+	@Override
+	public void getEmpByName(String name) {
+		try(Statement st = conn.createStatement()){
+			ResultSet rs = st.executeQuery(String.format(SELECT_EMP_NAME, name));
+			
+			while(rs.next()) {
+				System.out.println("ID = " + rs.getInt(1) +"\t Name = " + rs.getString(2) + "\t Salary = " + rs.getDouble(3));
+			}
+		}
+		catch(SQLException exception) {
+			exception.printStackTrace();
+		}
+		
 	}
 
 }
