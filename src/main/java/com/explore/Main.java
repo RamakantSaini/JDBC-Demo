@@ -18,10 +18,8 @@ public class Main {
 		
 //		edao.printAllEmployee();
 		
-		List<Employee> ls = edao.getAllData();
-		for(Employee e : ls) {
-			System.out.println(e);
-		}
+		//Sql Injection
+		edao.getEmpByName("abc' or '1=1");
 	}
 
 }
