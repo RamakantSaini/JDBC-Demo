@@ -17,6 +17,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	
 	private static final String INSERT_QUERY ="INSERT INTO ducatstudents VALUES (%d , '%s' , %f)";
 	private static final String UPDATE_QUERY ="UPDATE  ducatstudents SET salary = '%f' WHERE ID = %d";
+	private static final String DELETE_QUERY ="DELETE  FROM ducatstudents WHERE ID = %d";
 	
 	
 	static {
@@ -56,6 +57,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public void DeleteData(int id) {
 		
+		try(Statement st = conn.createStatement()){
+			st.executeUpdate(String.format(DELETE_QUERY, id));
+			System.out.println("Deletion Successfull..");
+		}
+		catch(SQLException exception) {
+			exception.printStackTrace();
+		}
 		
 	}
 
