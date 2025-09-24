@@ -42,7 +42,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "id=" + id + ", name=" + name + ", salary=" + salary + "";
+		return "Id=" + id + "\t Name = " + name + "\t Salary = " + salary + "";
 	}
 
 }
